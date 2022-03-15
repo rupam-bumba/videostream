@@ -42,15 +42,16 @@ app.get("/stream-video", async (req, res) => {
     let [start, end] = renege.replace(/bytes=/, "").split("-");
     start = parseInt(start);
     end = end ? parseInt(end, 10) : size - 1;
+    let cn_len = (start - end) + 1
 
     res.writeHead(206, {
       "Content-Range": `bytes ${start}-${end}/${size}`,
       "Accept-Range": `bytes`,
-      "Content-Length": (start - end) + 1,
+      "Content-Length": cn_len,
       "Content-Type": "video/mp4",
     });
 
-    console.log( "Content-Length" +  start - end + 1, );
+    console.log( "Content-Length" +  cn_len);
 
     fs.createReadStream(video1, { start, end }).pipe(res);
   } else {
