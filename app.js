@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
+
 var cors = require('cors')
 app.use(cors());
 
 require("dotenv").config({ path: ".env" });
+
 const fs = require("fs");
 var path=require('path');
+
 const { promisify } = require("util");
 const fileInfo = promisify(fs.stat);
 
@@ -14,9 +17,13 @@ app.use(express.static(path.join(__dirname,'public')));
 
 let video1 = "./public/video.mp4"
 
+
+
+
 app.get("/", (req, res) => {
   res.render("index");
 });
+
 
 app.get("/video", (req, res) => {
   res.writeHead(200, {
@@ -24,6 +31,7 @@ app.get("/video", (req, res) => {
   });
   fs.createReadStream(video1).pipe(res);
 });
+
 
 app.get("/stream-video", async (req, res) => {
   const { size } = await fileInfo(video1);
@@ -38,9 +46,11 @@ app.get("/stream-video", async (req, res) => {
     res.writeHead(206, {
       "Content-Range": `bytes ${start}-${end}/${size}`,
       "Accept-Range": `bytes`,
-      "Content-Length": start - end + 1,
+      "Content-Length": (start - end) + 1,
       "Content-Type": "video/mp4",
     });
+
+    console.log( "Content-Length" +  start - end + 1, );
 
     fs.createReadStream(video1, { start, end }).pipe(res);
   } else {
@@ -51,5 +61,6 @@ app.get("/stream-video", async (req, res) => {
     fs.createReadStream(video1).pipe(res);
   }
 });
+
 
 module.exports = app;
