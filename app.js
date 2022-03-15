@@ -51,7 +51,10 @@ app.get("/stream-video", async (req, res) => {
       "Content-Type": "video/mp4",
     });
 
-    console.log( "Content-Length" +  cn_len);
+    console.log( "start : " +  start) ;
+    console.log( "end : " +  end) ;
+    console.log( "Content-Length : " +  cn_len) ;
+
 
     fs.createReadStream(video1, { start, end }).pipe(res);
   } else {
