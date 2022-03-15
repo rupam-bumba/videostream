@@ -42,7 +42,7 @@ app.get("/stream-video", async (req, res) => {
     let [start, end] = renege.replace(/bytes=/, "").split("-");
     start = parseInt(start);
     end = end ? parseInt(end, 10) : size - 1;
-    let cn_len = (start - end) + 1
+    let cn_len = Math.abs( (start - end) + 1)
 
     res.writeHead(206, {
       "Content-Range": `bytes ${start}-${end}/${size}`,
