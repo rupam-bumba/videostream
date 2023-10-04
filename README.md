@@ -40,17 +40,20 @@ The application includes CORS support to allow cross-origin requests. You can co
 </details>
 Application Structure
 app.js: The main Express.js application file.
+
 public/: This directory should contain your video file (video.mp4 in this example).
+
 views/: Contains EJS templates for rendering the HTML views.
+
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Acknowledgments
 This application was created using Node.js and Express.js.
+
 Video streaming with partial content support is enabled.
+
 CORS is configured to allow cross-origin requests.
 Feel free to modify and customize this application for your needs!
 
 </details>
-```
-Replace <repository_url> with the actual URL of your GitHub repository. You can copy and paste this code into your README.md file on GitHub. Users can click the summary sections to expand and see the details.
