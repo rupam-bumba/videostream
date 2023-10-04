@@ -11,7 +11,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Getting Started
 
-1. Clone this repository to your local machine:
+Clone this repository to your local machine:
 Install the required dependencies:
 
 npm install
